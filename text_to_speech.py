@@ -8,7 +8,7 @@ load_dotenv()
 
 set_api_key(os.getenv("ELEVEN_LABS_API_KEY"))
 
-os.environ['PATH'] += os.pathsep + 'C:\\ffmpeg'
+os.environ['PATH'] += os.pathsep + os.getenv('FFMPEG_PATH')
 
 
 def speak (gpt_text) :
@@ -20,16 +20,13 @@ def speak (gpt_text) :
 
   play(audio)
 
-continuer = input("Voulez-vous continuer ? (y/n) : ").lower()
-while continuer == "y":
+speak(str(gpt.response))
+while True :
+
     speech_to_text.user_prompt = speech_to_text.recognize()
-    gpt.response = ""
+
     gpt.response = gpt.chatgpt_prompt()
+
+    # gpt_text_response = str(gpt.response)
+
     speak(str(gpt.response))
-
-    continuer = input("Voulez-vous continuer ? (y/n) : ").lower()
-    while continuer not in ["y", "n"]:
-        print("Répondez avec 'y' pour Oui ou 'n' pour Non.")
-        continuer = input("Voulez-vous continuer ? (y/n) : ").lower()
-
-speak("Au revoir !")

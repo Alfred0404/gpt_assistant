@@ -18,6 +18,10 @@ def recognize() :
         audio = get_audio()
         texte = r.recognize_google(audio, language="fr-FR")
         print(texte)
+
+        if texte == "stoppe":
+            exit()
+            
         return texte
 
     except sr.UnknownValueError :
