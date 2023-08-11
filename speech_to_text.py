@@ -16,7 +16,8 @@ def recognize() :
     texte = ""
     try :
         audio = get_audio()
-        texte = r.recognize_google(audio)
+        texte = r.recognize_google(audio, language="fr-FR")
+        print(texte)
         return texte
 
     except sr.UnknownValueError :
@@ -26,4 +27,3 @@ def recognize() :
         print(f"Error : {e}")
 
 user_prompt = recognize()
-print(user_prompt)

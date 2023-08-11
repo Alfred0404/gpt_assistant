@@ -26,7 +26,7 @@ def chatgpt_prompt() :
     # store the gpt response
     gpt_response = completion.choices[0].message.content
 
+    print(gpt_response)
     return gpt_response
 
 response = chatgpt_prompt()
-print(response)
