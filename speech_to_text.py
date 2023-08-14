@@ -13,19 +13,22 @@ def get_audio() :
 
 # recognize the audio
 def recognize() :
-    texte = ""
+    # texte = ""
+
     try :
         audio = get_audio()
+
         texte = r.recognize_google(audio, language="fr-FR")
         print(texte)
 
         if texte == "stoppe":
             exit()
-            
+
         return texte
 
     except sr.UnknownValueError :
-        print("Oups...Can't understand what you said...")
+        print("Google Speech Recognition could not understand audio")
+        return recognize()
 
     except sr.RequestError as e :
         print(f"Error : {e}")
